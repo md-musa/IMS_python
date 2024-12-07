@@ -1,0 +1,349 @@
+[
+    {
+        "label": "tabulate",
+        "importPath": "tabulate",
+        "description": "tabulate",
+        "isExtraImport": true,
+        "detail": "tabulate",
+        "documentation": {}
+    },
+    {
+        "label": "tabulate",
+        "importPath": "tabulate",
+        "description": "tabulate",
+        "isExtraImport": true,
+        "detail": "tabulate",
+        "documentation": {}
+    },
+    {
+        "label": "tabulate",
+        "importPath": "tabulate",
+        "description": "tabulate",
+        "isExtraImport": true,
+        "detail": "tabulate",
+        "documentation": {}
+    },
+    {
+        "label": "tabulate",
+        "importPath": "tabulate",
+        "description": "tabulate",
+        "isExtraImport": true,
+        "detail": "tabulate",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Store",
+        "importPath": "modules.store",
+        "description": "modules.store",
+        "isExtraImport": true,
+        "detail": "modules.store",
+        "documentation": {}
+    },
+    {
+        "label": "Store",
+        "importPath": "modules.store",
+        "description": "modules.store",
+        "isExtraImport": true,
+        "detail": "modules.store",
+        "documentation": {}
+    },
+    {
+        "label": "Store",
+        "importPath": "modules.store",
+        "description": "modules.store",
+        "isExtraImport": true,
+        "detail": "modules.store",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "Transaction",
+        "importPath": "modules.transaction",
+        "description": "modules.transaction",
+        "isExtraImport": true,
+        "detail": "modules.transaction",
+        "documentation": {}
+    },
+    {
+        "label": "Transaction",
+        "importPath": "modules.transaction",
+        "description": "modules.transaction",
+        "isExtraImport": true,
+        "detail": "modules.transaction",
+        "documentation": {}
+    },
+    {
+        "label": "Transaction",
+        "importPath": "modules.transaction",
+        "description": "modules.transaction",
+        "isExtraImport": true,
+        "detail": "modules.transaction",
+        "documentation": {}
+    },
+    {
+        "label": "InsufficientStockError",
+        "importPath": "utils.customError",
+        "description": "utils.customError",
+        "isExtraImport": true,
+        "detail": "utils.customError",
+        "documentation": {}
+    },
+    {
+        "label": "Manager",
+        "importPath": "modules.user",
+        "description": "modules.user",
+        "isExtraImport": true,
+        "detail": "modules.user",
+        "documentation": {}
+    },
+    {
+        "label": "SalesAssociate",
+        "importPath": "modules.user",
+        "description": "modules.user",
+        "isExtraImport": true,
+        "detail": "modules.user",
+        "documentation": {}
+    },
+    {
+        "label": "Manager",
+        "importPath": "modules.user",
+        "description": "modules.user",
+        "isExtraImport": true,
+        "detail": "modules.user",
+        "documentation": {}
+    },
+    {
+        "label": "SalesAssociate",
+        "importPath": "modules.user",
+        "description": "modules.user",
+        "isExtraImport": true,
+        "detail": "modules.user",
+        "documentation": {}
+    },
+    {
+        "label": "Item",
+        "importPath": "modules.item",
+        "description": "modules.item",
+        "isExtraImport": true,
+        "detail": "modules.item",
+        "documentation": {}
+    },
+    {
+        "label": "Item",
+        "importPath": "modules.item",
+        "description": "modules.item",
+        "isExtraImport": true,
+        "detail": "modules.item",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate_user",
+        "importPath": "utils.auth",
+        "description": "utils.auth",
+        "isExtraImport": true,
+        "detail": "utils.auth",
+        "documentation": {}
+    },
+    {
+        "label": "manager_menu",
+        "importPath": "utils.tasks",
+        "description": "utils.tasks",
+        "isExtraImport": true,
+        "detail": "utils.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "sales_associate_menu",
+        "importPath": "utils.tasks",
+        "description": "utils.tasks",
+        "isExtraImport": true,
+        "detail": "utils.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "Item",
+        "kind": 6,
+        "importPath": "modules.item",
+        "description": "modules.item",
+        "peekOfCode": "class Item():\n    def __init__(self, item_id, name, price, quantity):\n        self.item_id = item_id\n        self.name = name\n        self.price = price\n        self.quantity = quantity\n    def update_item(self, quantity):\n        try:\n            if quantity <= 0: \n                raise ValueError(\"Quantity must be greater than 0\")",
+        "detail": "modules.item",
+        "documentation": {}
+    },
+    {
+        "label": "Report",
+        "kind": 6,
+        "importPath": "modules.report",
+        "description": "modules.report",
+        "peekOfCode": "class Report(Store):\n    def __init__(self, report_id, report_type, data):\n        self.report_id = report_id\n        self.report_type = report_type\n        self.data = data\n    def generate_inventory_report(self, store):\n        return [\n            {\"Item ID\": item.item_id, \"Name\": item.name, \"Quantity\": item.quantity}\n            for item in store.items\n        ]",
+        "detail": "modules.report",
+        "documentation": {}
+    },
+    {
+        "label": "Store",
+        "kind": 6,
+        "importPath": "modules.store",
+        "description": "modules.store",
+        "peekOfCode": "class Store:\n    def __init__(self):\n        self.users = []\n        self.items = []\n        self.transactions = []\n    def add_user(self, user):\n        self.users.append(user)\n    def add_item(self, item):\n        self.items.append(item)\n    def add_transaction(self, trs):",
+        "detail": "modules.store",
+        "documentation": {}
+    },
+    {
+        "label": "Transaction",
+        "kind": 6,
+        "importPath": "modules.transaction",
+        "description": "modules.transaction",
+        "peekOfCode": "class Transaction(Store):\n    def __init__(self, item_id, quantity, total_price):\n        self.trans_id = f\"TRANS-{datetime.now().strftime('%Y%m%d%H%M%S')}\"\n        self.item_id = item_id\n        self.quantity = quantity\n        self.total_price = total_price\n        self.timestamp = datetime.now()\n    def generate_invoice(self):\n        invoice_data = [\n            [\"Transaction ID\", self.trans_id],",
+        "detail": "modules.transaction",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "modules.user",
+        "description": "modules.user",
+        "peekOfCode": "class User:\n    def __init__(self, user_id, username, password, role):\n        self.user_id = user_id\n        self.username = username\n        self.password = password\n        self.role = role\nclass SalesAssociate(User):\n    def __init__(self, user_id, username, password, role):\n        super().__init__(user_id, username, password, role)\n    def view_inventory(self, store):",
+        "detail": "modules.user",
+        "documentation": {}
+    },
+    {
+        "label": "SalesAssociate",
+        "kind": 6,
+        "importPath": "modules.user",
+        "description": "modules.user",
+        "peekOfCode": "class SalesAssociate(User):\n    def __init__(self, user_id, username, password, role):\n        super().__init__(user_id, username, password, role)\n    def view_inventory(self, store):\n        print(store.items[0].__dict__)\n        if not store.items:\n             print(\"The inventory is empty.\")\n             return\n        print(\"\\nStore Inventory:\")\n        data = [",
+        "detail": "modules.user",
+        "documentation": {}
+    },
+    {
+        "label": "Manager",
+        "kind": 6,
+        "importPath": "modules.user",
+        "description": "modules.user",
+        "peekOfCode": "class Manager(User):\n    def __init__(self, user_id, username, password, role):\n        super().__init__(user_id, username, password, role)\n    def add_user(self, store):\n        user_id = input(\"Enter new user's ID: \")\n        username = input(\"Enter new user's username: \")\n        password = input(\"Enter new user's password: \")\n        role = input(\"Enter new user's role (Manager/SalesAssociate): \")\n        if role.lower() == \"manager\":\n            new_user = Manager(user_id, username, password, \"Manager\")",
+        "detail": "modules.user",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate_user",
+        "kind": 2,
+        "importPath": "utils.auth",
+        "description": "utils.auth",
+        "peekOfCode": "def authenticate_user(store):\n    username = input(\"Enter username: \")\n    password = input(\"Enter password: \")\n    for user in store.users:\n        if user.username == username and user.password == password:\n            print(f\"\\nWelcome, {user.username}! You are logged in as {user.role}.\")\n            return user\n    print(\"Invalid username or password! Please try again.\")\n    return None",
+        "detail": "utils.auth",
+        "documentation": {}
+    },
+    {
+        "label": "InsufficientStockError",
+        "kind": 6,
+        "importPath": "utils.customError",
+        "description": "utils.customError",
+        "peekOfCode": "class InsufficientStockError(Exception):\n    def __init__(self, item_name, available):\n        self.item_name = item_name\n        self.available = available\n        super().__init__(f\"\\nInsufficient stock for '{item_name}' Available: {available}.\")",
+        "detail": "utils.customError",
+        "documentation": {}
+    },
+    {
+        "label": "add_dummy_data",
+        "kind": 2,
+        "importPath": "utils.dummy",
+        "description": "utils.dummy",
+        "peekOfCode": "def add_dummy_data(store, current_user):\n    # Dummy Data for Users\n    manager = Manager(\"1\", \"manager\", \"manager123\", \"Manager\")\n    sales_associate1 = SalesAssociate(\"2\", \"associate1\", \"pass1\", \"SalesAssociate\")\n    sales_associate2 = SalesAssociate(\"3\", \"associate2\", \"pass2\", \"SalesAssociate\")\n    current_user.add_user(manager)\n    current_user.add_user(sales_associate1)\n    current_user.add_user(sales_associate2)\n    # Dummy Data for Items\n    current_user.add_item(Item(\"101\", \"Laptop\", 1000.0, 10))",
+        "detail": "utils.dummy",
+        "documentation": {}
+    },
+    {
+        "label": "sales_associate_menu",
+        "kind": 2,
+        "importPath": "utils.tasks",
+        "description": "utils.tasks",
+        "peekOfCode": "def sales_associate_menu(sales_associate, store):\n    while True:\n        print(\"\\nSales Associate Menu:\")\n        print(\"1. View Inventory\")\n        print(\"2. Search Item\")\n        print(\"3. Create Sale\")\n        print(\"4. View Low Stock Items\")\n        print(\"5. Logout\")\n        print(\"6. Exit\")\n        try:",
+        "detail": "utils.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "manager_menu",
+        "kind": 2,
+        "importPath": "utils.tasks",
+        "description": "utils.tasks",
+        "peekOfCode": "def manager_menu(manager, store):\n    while True:\n        print(\"\\nManager Menu:\")\n        print(\"1. Add a User\")\n        print(\"2. Delete a User\")\n        print(\"3. View Users\")\n        print(\"4. Analyze Sales\")\n        print(\"5. View Transactions\")\n        print(\"6. Logout\")\n        print(\"7. Exit\")",
+        "detail": "utils.tasks",
+        "documentation": {}
+    },
+    {
+        "label": "print_table",
+        "kind": 2,
+        "importPath": "utils.view",
+        "description": "utils.view",
+        "peekOfCode": "def print_table(obj_list):\n    if not obj_list:\n        print(\"No data available to display.\")\n        return\n    # Convert list of objects to list of dictionaries\n    data = [obj.__dict__ for obj in obj_list]\n    # Extract headers dynamically from the first object's attributes\n    headers = data[0].keys()\n    print(tabulate(data, headers=headers, tablefmt=\"grid\"))",
+        "detail": "utils.view",
+        "documentation": {}
+    },
+    {
+        "label": "add_dummy_data",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def add_dummy_data(store):\n    manager = Manager(\"1\", \"musa-m\", \"musa\", \"Manager\")\n    store.add_user(manager)\n    sales_associate1 = SalesAssociate(\"2\", \"musa-s\", \"musa\", \"SalesAssociate\")\n    sales_associate2 = SalesAssociate(\"3\", \"associate2\", \"pass2\", \"SalesAssociate\")\n    store.add_user(sales_associate1)\n    store.add_user(sales_associate2)\n    store.add_item(Item(\"101\", \"Laptop\", 1000.0, 10))\n    store.add_item(Item(\"102\", \"Mouse\", 25.0, 50))\n    store.add_item(Item(\"103\", \"Keyboard\", 40.0, 30))",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    print(\"\\n-----Inventory Management System-----\")\n    add_dummy_data(store)\n    current_user = None\n    while not current_user:\n        current_user = authenticate_user(store)\n    while True:\n        if current_user.role == \"Manager\":\n            manager_menu(current_user, store)\n        elif current_user.role == \"SalesAssociate\":",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "store",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "store = Store()\nROLES = (\"Manager\", \"SalesAssociate\")\ndef add_dummy_data(store):\n    manager = Manager(\"1\", \"musa-m\", \"musa\", \"Manager\")\n    store.add_user(manager)\n    sales_associate1 = SalesAssociate(\"2\", \"musa-s\", \"musa\", \"SalesAssociate\")\n    sales_associate2 = SalesAssociate(\"3\", \"associate2\", \"pass2\", \"SalesAssociate\")\n    store.add_user(sales_associate1)\n    store.add_user(sales_associate2)\n    store.add_item(Item(\"101\", \"Laptop\", 1000.0, 10))",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "ROLES",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "ROLES = (\"Manager\", \"SalesAssociate\")\ndef add_dummy_data(store):\n    manager = Manager(\"1\", \"musa-m\", \"musa\", \"Manager\")\n    store.add_user(manager)\n    sales_associate1 = SalesAssociate(\"2\", \"musa-s\", \"musa\", \"SalesAssociate\")\n    sales_associate2 = SalesAssociate(\"3\", \"associate2\", \"pass2\", \"SalesAssociate\")\n    store.add_user(sales_associate1)\n    store.add_user(sales_associate2)\n    store.add_item(Item(\"101\", \"Laptop\", 1000.0, 10))\n    store.add_item(Item(\"102\", \"Mouse\", 25.0, 50))",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "kind": 5,
+        "importPath": "tempCodeRunnerFile",
+        "description": "tempCodeRunnerFile",
+        "peekOfCode": "current_user = None\n    while not current_user:\n        current_user = authenticate_user(store)",
+        "detail": "tempCodeRunnerFile",
+        "documentation": {}
+    }
+]
