@@ -20,9 +20,9 @@ def add_dummy_data(store):
 
     store.add_item(Item("101", "Laptop", 1000.0, 10))
     store.add_item(Item("102", "Mouse", 25.0, 50))
-    store.add_item(Item("103", "Keyboard", 40.0, 30))
+    store.add_item(Item("103", "Keyboard", 40.0, 4))
     store.add_item(Item("104", "Monitor", 150.0, 20))
-    store.add_item(Item("105", "Printer", 300.0, 5))
+    store.add_item(Item("105", "Printer", 300.0, 3))
 
     store.add_transaction(Transaction("101", 2, 2000.0))
     store.add_transaction(Transaction("102", 5, 125.0))
@@ -31,19 +31,27 @@ def add_dummy_data(store):
 
 def main():
     print("\n-----Inventory Management System-----")
-    add_dummy_data(store)
+    
 
     current_user = None
+    print("-----Login Page----")
     while not current_user:
         current_user = authenticate_user(store)
 
-
+    con = False
     while True:
         if current_user.role == "Manager":
-            manager_menu(current_user, store)
+           con = manager_menu(current_user, store)
         elif current_user.role == "SalesAssociate":
-            sales_associate_menu(current_user, store)
+           con = sales_associate_menu(current_user, store)
+        
+        if con:
+            break
+        
+    if con:
+        main()
 
 
 if __name__ == "__main__":
+    add_dummy_data(store)
     main()

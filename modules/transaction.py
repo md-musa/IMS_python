@@ -1,11 +1,10 @@
 from datetime import datetime
 from tabulate import tabulate
-from modules.store import Store
 
 
 
 
-class Transaction(Store):
+class Transaction():
     def __init__(self, item_id, quantity, total_price):
         self.trans_id = f"TRANS-{datetime.now().strftime('%Y%m%d%H%M%S')}"
         self.item_id = item_id
@@ -25,6 +24,11 @@ class Transaction(Store):
         print("\nInvoice Details:")
         print(tabulate(invoice_data, headers=["Field", "Value"], tablefmt="grid"))
    
+    def to_dict(self):
+         """Convert object to dictionary, converting datetime to string."""
+         data = self.__dict__.copy()
+         data["timestamp"] = self.timestamp.isoformat()  # Convert datetime to ISO string
+         return data
    
      
     

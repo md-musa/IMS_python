@@ -3,8 +3,10 @@ def authenticate_user(store):
     password = input("Enter password: ")
 
     for user in store.users:
-        if user.username == username and user.password == password:
-            print(f"\nWelcome, {user.username}! You are logged in as {user.role}.")
+        if user.username == username and user.getPassword() == password:
+            print(f"+----------------------------------------------+")
+            print(f"| UserName: {username}    Role: {user.role}    |")
+            print(f"+----------------------------------------------+\n")
             return user
     print("Invalid username or password! Please try again.")
     return None

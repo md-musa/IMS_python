@@ -1,34 +1,32 @@
-
-
-def sales_associate_menu(sales_associate, store):
+def sales_associate_menu(sa, store):
     while True:
         print("\nSales Associate Menu:")
         print("1. View Inventory")
         print("2. Search Item")
         print("3. Create Sale")
         print("4. View Low Stock Items")
-        print("5. Logout")
+        print("5. Add item")
         print("6. Exit")
 
         try:
             choice = int(input("\nEnter your choice: "))
 
             if choice == 1:
-                sales_associate.view_inventory(store)
+                sa.view_inventory(store)
             elif choice == 2:
-                sales_associate.search_item(store)
+                sa.search_item(store)
             elif choice == 3:
-                sales_associate.create_sale(store)
+                sa.create_sale(store)
             elif choice == 4:
-                sales_associate.get_low_stock_items(store)
+                sa.get_low_stock_items(store)
             elif choice == 5:
-                return
+                sa.add_item(store)
             elif choice == 6:
                 print("Exiting the application. Goodbye!")
-                exit()
+                return True
             else:
                 print("⚠ Invalid choice!")
-        except ValueError:
+        except ValueError as e:
             print("⚠ Invalid input! Please enter a number.")
         except Exception as e:
             print(f"⚠ An error occurred: {e}")
@@ -45,8 +43,7 @@ def manager_menu(manager, store):
         print("3. View Users")
         print("4. Analyze Sales")
         print("5. View Transactions")
-        print("6. Logout")
-        print("7. Exit")
+        print("6. Exit")
 
         try:
             choice = int(input("\nEnter your choice: "))
@@ -62,15 +59,13 @@ def manager_menu(manager, store):
             elif choice == 5:
                 manager.view_transactions(store)
             elif choice == 6:
-                return
-            elif choice == 7:
                 print("Exiting the application. Goodbye!")
-                exit()
+                return True
             else:
-                print("Invalid choice!")
+                print("⚠ Invalid choice!")
         except ValueError:
-            print("Invalid input! Please enter a number.")
+            print("⚠ Invalid input! Please enter a number.")
         except Exception as e:
-            print(f"An error occurred: {e}")
+            print(f"⚠ sAn error occurred: {e}")
 
 

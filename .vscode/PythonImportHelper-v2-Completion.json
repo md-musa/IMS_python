@@ -64,14 +64,6 @@
         "documentation": {}
     },
     {
-        "label": "Store",
-        "importPath": "modules.store",
-        "description": "modules.store",
-        "isExtraImport": true,
-        "detail": "modules.store",
-        "documentation": {}
-    },
-    {
         "label": "numpy",
         "kind": 6,
         "isExtraImport": true,
@@ -113,6 +105,30 @@
         "documentation": {}
     },
     {
+        "label": "Item",
+        "importPath": "modules.item",
+        "description": "modules.item",
+        "isExtraImport": true,
+        "detail": "modules.item",
+        "documentation": {}
+    },
+    {
+        "label": "Item",
+        "importPath": "modules.item",
+        "description": "modules.item",
+        "isExtraImport": true,
+        "detail": "modules.item",
+        "documentation": {}
+    },
+    {
+        "label": "Item",
+        "importPath": "modules.item",
+        "description": "modules.item",
+        "isExtraImport": true,
+        "detail": "modules.item",
+        "documentation": {}
+    },
+    {
         "label": "Manager",
         "importPath": "modules.user",
         "description": "modules.user",
@@ -142,22 +158,6 @@
         "description": "modules.user",
         "isExtraImport": true,
         "detail": "modules.user",
-        "documentation": {}
-    },
-    {
-        "label": "Item",
-        "importPath": "modules.item",
-        "description": "modules.item",
-        "isExtraImport": true,
-        "detail": "modules.item",
-        "documentation": {}
-    },
-    {
-        "label": "Item",
-        "importPath": "modules.item",
-        "description": "modules.item",
-        "isExtraImport": true,
-        "detail": "modules.item",
         "documentation": {}
     },
     {
@@ -216,7 +216,7 @@
         "kind": 6,
         "importPath": "modules.transaction",
         "description": "modules.transaction",
-        "peekOfCode": "class Transaction(Store):\n    def __init__(self, item_id, quantity, total_price):\n        self.trans_id = f\"TRANS-{datetime.now().strftime('%Y%m%d%H%M%S')}\"\n        self.item_id = item_id\n        self.quantity = quantity\n        self.total_price = total_price\n        self.timestamp = datetime.now()\n    def generate_invoice(self):\n        invoice_data = [\n            [\"Transaction ID\", self.trans_id],",
+        "peekOfCode": "class Transaction():\n    def __init__(self, item_id, quantity, total_price):\n        self.trans_id = f\"TRANS-{datetime.now().strftime('%Y%m%d%H%M%S')}\"\n        self.item_id = item_id\n        self.quantity = quantity\n        self.total_price = total_price\n        self.timestamp = datetime.now()\n    def generate_invoice(self):\n        invoice_data = [\n            [\"Transaction ID\", self.trans_id],",
         "detail": "modules.transaction",
         "documentation": {}
     },
@@ -225,7 +225,7 @@
         "kind": 6,
         "importPath": "modules.user",
         "description": "modules.user",
-        "peekOfCode": "class User:\n    def __init__(self, user_id, username, password, role):\n        self.user_id = user_id\n        self.username = username\n        self.password = password\n        self.role = role\nclass SalesAssociate(User):\n    def __init__(self, user_id, username, password, role):\n        super().__init__(user_id, username, password, role)\n    def view_inventory(self, store):",
+        "peekOfCode": "class User:\n    def __init__(self, user_id, username, password, role):\n        self.user_id = user_id\n        self.username = username\n        self.__password = password\n        self.role = role\n    def getPassword(self):\n        return self.__password\nclass SalesAssociate(User):\n    def __init__(self, user_id, username, __password, role):",
         "detail": "modules.user",
         "documentation": {}
     },
@@ -234,7 +234,7 @@
         "kind": 6,
         "importPath": "modules.user",
         "description": "modules.user",
-        "peekOfCode": "class SalesAssociate(User):\n    def __init__(self, user_id, username, password, role):\n        super().__init__(user_id, username, password, role)\n    def view_inventory(self, store):\n        print(store.items[0].__dict__)\n        if not store.items:\n             print(\"The inventory is empty.\")\n             return\n        print(\"\\nStore Inventory:\")\n        data = [",
+        "peekOfCode": "class SalesAssociate(User):\n    def __init__(self, user_id, username, __password, role):\n        super().__init__(user_id, username, __password, role)\n    def view_inventory(self, store):\n        if not store.items:\n             print(\"The inventory is empty.\")\n             return\n        print(\"\\nStore Inventory:\")\n        data = [\n          {\"Item ID\": item.item_id, \"Name\": item.name, \"Price\": item.price, \"Quantity\": item.quantity} for item in store.items]",
         "detail": "modules.user",
         "documentation": {}
     },
@@ -243,7 +243,7 @@
         "kind": 6,
         "importPath": "modules.user",
         "description": "modules.user",
-        "peekOfCode": "class Manager(User):\n    def __init__(self, user_id, username, password, role):\n        super().__init__(user_id, username, password, role)\n    def add_user(self, store):\n        user_id = input(\"Enter new user's ID: \")\n        username = input(\"Enter new user's username: \")\n        password = input(\"Enter new user's password: \")\n        role = input(\"Enter new user's role (Manager/SalesAssociate): \")\n        if role.lower() == \"manager\":\n            new_user = Manager(user_id, username, password, \"Manager\")",
+        "peekOfCode": "class Manager(User):\n    def __init__(self, user_id, username, __password, role):\n        super().__init__(user_id, username, __password, role)\n    def add_user(self, store):\n        username = input(\"Enter new user's username: \")\n        password = input(\"Enter new user's password: \")\n        role = input(\"Enter new user's role (Manager/SalesAssociate): \")\n        isUserExist = any(user.username == username for user in store.users)\n        if isUserExist:\n            print(\"User already exists!\")",
         "detail": "modules.user",
         "documentation": {}
     },
@@ -252,7 +252,7 @@
         "kind": 2,
         "importPath": "utils.auth",
         "description": "utils.auth",
-        "peekOfCode": "def authenticate_user(store):\n    username = input(\"Enter username: \")\n    password = input(\"Enter password: \")\n    for user in store.users:\n        if user.username == username and user.password == password:\n            print(f\"\\nWelcome, {user.username}! You are logged in as {user.role}.\")\n            return user\n    print(\"Invalid username or password! Please try again.\")\n    return None",
+        "peekOfCode": "def authenticate_user(store):\n    username = input(\"Enter username: \")\n    password = input(\"Enter password: \")\n    for user in store.users:\n        if user.username == username and user.getPassword() == password:\n            print(f\"+----------------------------------------------+\")\n            print(f\"| UserName: {username}    Role: {user.role}    |\")\n            print(f\"+----------------------------------------------+\\n\")\n            return user\n    print(\"Invalid username or password! Please try again.\")",
         "detail": "utils.auth",
         "documentation": {}
     },
@@ -279,7 +279,7 @@
         "kind": 2,
         "importPath": "utils.tasks",
         "description": "utils.tasks",
-        "peekOfCode": "def sales_associate_menu(sales_associate, store):\n    while True:\n        print(\"\\nSales Associate Menu:\")\n        print(\"1. View Inventory\")\n        print(\"2. Search Item\")\n        print(\"3. Create Sale\")\n        print(\"4. View Low Stock Items\")\n        print(\"5. Logout\")\n        print(\"6. Exit\")\n        try:",
+        "peekOfCode": "def sales_associate_menu(sa, store):\n    while True:\n        print(\"\\nSales Associate Menu:\")\n        print(\"1. View Inventory\")\n        print(\"2. Search Item\")\n        print(\"3. Create Sale\")\n        print(\"4. View Low Stock Items\")\n        print(\"5. Add item\")\n        print(\"6. Exit\")\n        try:",
         "detail": "utils.tasks",
         "documentation": {}
     },
@@ -288,7 +288,7 @@
         "kind": 2,
         "importPath": "utils.tasks",
         "description": "utils.tasks",
-        "peekOfCode": "def manager_menu(manager, store):\n    while True:\n        print(\"\\nManager Menu:\")\n        print(\"1. Add a User\")\n        print(\"2. Delete a User\")\n        print(\"3. View Users\")\n        print(\"4. Analyze Sales\")\n        print(\"5. View Transactions\")\n        print(\"6. Logout\")\n        print(\"7. Exit\")",
+        "peekOfCode": "def manager_menu(manager, store):\n    while True:\n        print(\"\\nManager Menu:\")\n        print(\"1. Add a User\")\n        print(\"2. Delete a User\")\n        print(\"3. View Users\")\n        print(\"4. Analyze Sales\")\n        print(\"5. View Transactions\")\n        print(\"6. Exit\")\n        try:",
         "detail": "utils.tasks",
         "documentation": {}
     },
@@ -306,7 +306,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def add_dummy_data(store):\n    manager = Manager(\"1\", \"musa-m\", \"musa\", \"Manager\")\n    store.add_user(manager)\n    sales_associate1 = SalesAssociate(\"2\", \"musa-s\", \"musa\", \"SalesAssociate\")\n    sales_associate2 = SalesAssociate(\"3\", \"associate2\", \"pass2\", \"SalesAssociate\")\n    store.add_user(sales_associate1)\n    store.add_user(sales_associate2)\n    store.add_item(Item(\"101\", \"Laptop\", 1000.0, 10))\n    store.add_item(Item(\"102\", \"Mouse\", 25.0, 50))\n    store.add_item(Item(\"103\", \"Keyboard\", 40.0, 30))",
+        "peekOfCode": "def add_dummy_data(store):\n    manager = Manager(\"1\", \"musa-m\", \"musa\", \"Manager\")\n    store.add_user(manager)\n    sales_associate1 = SalesAssociate(\"2\", \"musa-s\", \"musa\", \"SalesAssociate\")\n    sales_associate2 = SalesAssociate(\"3\", \"associate2\", \"pass2\", \"SalesAssociate\")\n    store.add_user(sales_associate1)\n    store.add_user(sales_associate2)\n    store.add_item(Item(\"101\", \"Laptop\", 1000.0, 10))\n    store.add_item(Item(\"102\", \"Mouse\", 25.0, 50))\n    store.add_item(Item(\"103\", \"Keyboard\", 40.0, 4))",
         "detail": "main",
         "documentation": {}
     },
@@ -315,7 +315,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def main():\n    print(\"\\n-----Inventory Management System-----\")\n    add_dummy_data(store)\n    current_user = None\n    while not current_user:\n        current_user = authenticate_user(store)\n    while True:\n        if current_user.role == \"Manager\":\n            manager_menu(current_user, store)\n        elif current_user.role == \"SalesAssociate\":",
+        "peekOfCode": "def main():\n    print(\"\\n-----Inventory Management System-----\")\n    current_user = None\n    print(\"-----Login Page----\")\n    while not current_user:\n        current_user = authenticate_user(store)\n    con = False\n    while True:\n        if current_user.role == \"Manager\":\n           con = manager_menu(current_user, store)",
         "detail": "main",
         "documentation": {}
     },
@@ -335,15 +335,6 @@
         "description": "main",
         "peekOfCode": "ROLES = (\"Manager\", \"SalesAssociate\")\ndef add_dummy_data(store):\n    manager = Manager(\"1\", \"musa-m\", \"musa\", \"Manager\")\n    store.add_user(manager)\n    sales_associate1 = SalesAssociate(\"2\", \"musa-s\", \"musa\", \"SalesAssociate\")\n    sales_associate2 = SalesAssociate(\"3\", \"associate2\", \"pass2\", \"SalesAssociate\")\n    store.add_user(sales_associate1)\n    store.add_user(sales_associate2)\n    store.add_item(Item(\"101\", \"Laptop\", 1000.0, 10))\n    store.add_item(Item(\"102\", \"Mouse\", 25.0, 50))",
         "detail": "main",
-        "documentation": {}
-    },
-    {
-        "label": "current_user",
-        "kind": 5,
-        "importPath": "tempCodeRunnerFile",
-        "description": "tempCodeRunnerFile",
-        "peekOfCode": "current_user = None\n    while not current_user:\n        current_user = authenticate_user(store)",
-        "detail": "tempCodeRunnerFile",
         "documentation": {}
     }
 ]

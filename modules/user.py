@@ -2,21 +2,23 @@ import numpy as np
 from tabulate import tabulate
 from modules.transaction import Transaction
 from utils.customError import InsufficientStockError
+from modules.item import Item
 
 class User:
     def __init__(self, user_id, username, password, role):
         self.user_id = user_id
         self.username = username
-        self.password = password
+        self.__password = password
         self.role = role
+    def getPassword(self):
+        return self.__password
 
 
 class SalesAssociate(User):
-    def __init__(self, user_id, username, password, role):
-        super().__init__(user_id, username, password, role)
+    def __init__(self, user_id, username, __password, role):
+        super().__init__(user_id, username, __password, role)
     
     def view_inventory(self, store):
-        print(store.items[0].__dict__)
         if not store.items:
              print("The inventory is empty.")
              return
@@ -27,11 +29,11 @@ class SalesAssociate(User):
         print(tabulate(data, headers="keys", tablefmt="grid"))
 
     def search_item(self, store):
-        product_name = input("Enter product name: ").lower()
-        found_items = [item for item in store.items if product_name in item.name.lower()]
-        if found_items:
+        pd_name = input("Enter product name: ").lower()
+        items = [item for item in store.items if pd_name in item.name.lower()]
+        if items:
             print("\nFound Items:")
-            item_data = [{"Item ID": item.item_id, "Name": item.name, "Price": item.price, "Quantity": item.quantity} for item in found_items]
+            item_data = [{"Item ID": item.item_id, "Name": item.name, "Price": item.price, "Quantity": item.quantity} for item in items]
             print(tabulate(item_data, headers="keys", tablefmt="grid"))
         else:
             print("No items found with that name.")
@@ -57,7 +59,7 @@ class SalesAssociate(User):
             item.quantity -= quantity
 
             print("Transaction created successfully!")
-            print(transaction.generate_invoice())
+            transaction.generate_invoice()
 
         except Exception as e:
             print(f"Failed to create sale: {e}")
@@ -71,21 +73,40 @@ class SalesAssociate(User):
         else:
             print("No low stock items.")
     
-    def add_item(self):
-        pass
+    def add_item(self, store):
+        name = input("Enter item name: ")
+        try:
+            price = float(input("Enter item price: "))
+            quantity = int(input("Enter item quantity: "))
+        except ValueError:
+            print("Invalid input. Price must be a number and quantity must be an integer.")
+            return
+
+        id = int(store.items[-1].item_id) + 1 if len(store.items) > 0 else 100
+        item = Item(id, name, price, quantity)
+        store.add_item(item)
+        print(f"Item '{name}' added successfully with ID {id}.")
+
+        
 
 
 
 class Manager(User):
-    def __init__(self, user_id, username, password, role):
-        super().__init__(user_id, username, password, role)
+    def __init__(self, user_id, username, __password, role):
+        super().__init__(user_id, username, __password, role)
 
     def add_user(self, store):
-        user_id = input("Enter new user's ID: ")
         username = input("Enter new user's username: ")
         password = input("Enter new user's password: ")
         role = input("Enter new user's role (Manager/SalesAssociate): ")
+        
+        isUserExist = any(user.username == username for user in store.users)
+        if isUserExist:
+            print("User already exists!")
+            return
 
+        user_id = int(store.users[-1].user_id)+1 if len(store.users) > 0 else 100
+        
         if role.lower() == "manager":
             new_user = Manager(user_id, username, password, "Manager")
         elif role.lower() == "salesassociate":
@@ -100,12 +121,13 @@ class Manager(User):
     def delete_user(self, store):
         user_id = input("Enter the user ID to delete: ")
         user_to_remove = next((user for user in store.users if user.user_id == user_id), None)
+        
+        if user_to_remove == None:
+            raise ValueError("User does not exist with this Id")
 
-        if user_to_remove:
-            store.users.remove(user_to_remove)
-            print(f"User with ID {user_id} deleted successfully.")
-        else:
-            print(f"User with ID {user_id} not found.")
+        store.users.remove(user_to_remove)
+        print(f"User with ID {user_id} deleted successfully.")
+        
 
     def view_users(self, store):
         if not store.users:
@@ -135,11 +157,11 @@ class Manager(User):
         print(tabulate(transaction_data, headers="keys", tablefmt="grid"))
     
     def analyze_sales(self, store):
-        trs_totals = [t.total_price for t in store.transactions]
-        if trs_totals:
-            avg_sales = np.mean(trs_totals)
-            total_sales = np.sum(trs_totals)
-            max_sale = np.max(trs_totals)
+        tp = [t.total_price for t in store.transactions]
+        if tp:
+            avg_sales = np.mean(tp)
+            total_sales = np.sum(tp)
+            max_sale = np.max(tp)
 
             print(f"Average Sale: ${avg_sales:.2f}")
             print(f"Total Sales: ${total_sales:.2f}")
@@ -148,3 +170,4 @@ class Manager(User):
              print("No transactions available for analysis.")
 
 
+# 15da2
